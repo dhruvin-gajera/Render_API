@@ -75,12 +75,12 @@ def get_all_competition_entries(db: Session = Depends(get_db)):
 
 
 # Read a specific competition entry by ID
-# @router.get("/{entry_id}", response_model=schema.CompetitionEntryBase)
-# def get_competition_entry(entry_id: str, db: Session = Depends(get_db)):
-#     entry = db.query(models.CompetitionEntry).filter(models.CompetitionEntry.id == entry_id).first()
-#     if not entry:
-#         raise HTTPException(status_code=404, detail="Competition Entry not found")
-#     return entry
+@router.get("/{entry_id}", response_model=schema.CompetitionEntryBase)
+def get_competition_entry(entry_id: str, db: Session = Depends(get_db)):
+    entry = db.query(models.CompetitionEntry).filter(models.CompetitionEntry.id == entry_id).first()
+    if not entry:
+        raise HTTPException(status_code=404, detail="Competition Entry not found")
+    return entry
 
 
 # Update a competition entry
